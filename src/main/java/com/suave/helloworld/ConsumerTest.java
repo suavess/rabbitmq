@@ -1,4 +1,4 @@
-package com.suave;
+package com.suave.helloworld;
 
 import com.rabbitmq.client.*;
 import org.junit.Test;
