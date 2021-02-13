@@ -2,7 +2,7 @@ package com.suave.helloworld;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
+import com.suave.utils.RabbitmqUtils;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -19,15 +19,7 @@ public class ProviderTest {
      */
     @Test
     public void testSendMsg() throws IOException, TimeoutException {
-        // 创建连接mq的连接工厂对象
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("127.0.0.1");
-        factory.setPort(5672);
-        factory.setVirtualHost("/ems");
-        factory.setUsername("ems");
-        factory.setPassword("ems");
-        // 获取连接对象
-        Connection connection = factory.newConnection();
+        Connection connection = RabbitmqUtils.getConnection();
         // 获取连接通道
         Channel channel = connection.createChannel();
         // 通道绑定对应的消息队列

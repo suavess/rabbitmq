@@ -1,6 +1,7 @@
 package com.suave.helloworld;
 
 import com.rabbitmq.client.*;
+import com.suave.utils.RabbitmqUtils;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -20,13 +21,7 @@ public class ConsumerTest {
      */
     @Test
     public void consume() throws IOException, TimeoutException {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("127.0.0.1");
-        factory.setPort(5672);
-        factory.setVirtualHost("/ems");
-        factory.setUsername("ems");
-        factory.setPassword("ems");
-        Connection connection = factory.newConnection();
+        Connection connection = RabbitmqUtils.getConnection();
         Channel channel = connection.createChannel();
         channel.queueDeclare("hello", false, false, false, null);
         // 消费消息
@@ -50,13 +45,7 @@ public class ConsumerTest {
     }
 
     public static void main(String[] args) throws IOException, TimeoutException {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("127.0.0.1");
-        factory.setPort(5672);
-        factory.setVirtualHost("/ems");
-        factory.setUsername("ems");
-        factory.setPassword("ems");
-        Connection connection = factory.newConnection();
+        Connection connection = RabbitmqUtils.getConnection();
         Channel channel = connection.createChannel();
         channel.queueDeclare("hello", false, false, false, null);
         // 消费消息
