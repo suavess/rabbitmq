@@ -30,13 +30,18 @@ class RabbitmqSpringbootApplicationTests {
     }
 
     /**
-     * work模型
+     * 广播模型
      */
     @Test
     public void testFanout() {
-        for (int i = 0; i < 10; i++) {
-            rabbitTemplate.convertAndSend("logs", "", "work模型" + i);
-        }
+        rabbitTemplate.convertAndSend("logs", "", "广播模型");
     }
 
+    /**
+     * Route模型
+     */
+    @Test
+    public void testRoute() {
+        rabbitTemplate.convertAndSend("directs", "info", "发送routeKey为info的路由模型");
+    }
 }
