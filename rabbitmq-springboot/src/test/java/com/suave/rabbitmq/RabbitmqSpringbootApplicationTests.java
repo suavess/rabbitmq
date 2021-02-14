@@ -44,4 +44,12 @@ class RabbitmqSpringbootApplicationTests {
     public void testRoute() {
         rabbitTemplate.convertAndSend("directs", "info", "发送routeKey为info的路由模型");
     }
+
+    /**
+     * Route模型
+     */
+    @Test
+    public void testTopic() {
+        rabbitTemplate.convertAndSend("topics", "user.save", "发送routeKey为user.save的路由消息");
+    }
 }
